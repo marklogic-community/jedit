@@ -76,15 +76,15 @@ with the XQuery plugin:
   On the popup window, select the Install tab.
 
   Locate the XQuery Plugin in the list (in the
-  HTML and XML Category.
+  HTML and XML Category).
 
   Select the XQuery checkbox.  Several other
   plugins should also be automatically be checked.
 
   Select any other plugins you'd also like to install.
 
-* Click the Install button and wait for the plugin
-  jar files to be downloaded and installed.
+* Click the Install button and wait for jEdit to
+  download and install the plugin jar files.
 
   Be patient, the jEdit plugin site is often heavily
   loaded and may be very slow.
@@ -93,19 +93,21 @@ with the XQuery plugin:
 
 * Install The Mark Logic Adapter
 
-  Unpack the the contents of MLJeditXQuery.zip from
+  Unpack the contents of MLJeditXQuery.zip from
   this distribution and move the jar files to
   your user-specific jEdit jars directory.  There
-  are four jar files in there: MakrLogicAdapter.jar,
+  are four jar files in there: MarkLogicAdapter.jar,
   xdbc.jar, xdmp.jar and jdom.jar.
 
   On Windows this is usually the directory
-  c:\Documents and Settings\jEdit\jars.  On unix,
-  linux or OS X, it's $HOME/.jedit/jars.
+  c:\Documents and Settings\{username}\jEdit\jars,
+  where {username} is your login user name.
+  On unix, linux or OS X, this directory is at
+  $HOME/.jedit/jars.
 
   Note: Plugin jars may also go in the jars directory
-  under the main jEdit directory, but the XQuery plugin
-  only looks in the user-specific jars directory for
+  under the jEdit application directory, but the XQuery
+  plugin only searches the user-specific directory for
   its adapters.
 
   Note 2: Yes, you can use this adapter on Mac OS X
@@ -137,15 +139,15 @@ with the XQuery plugin:
   you don't see the General and Options sub-items.
 
   Click the General item.  The main window on the right
-  will display a drop-down list of adapters on the right.
+  will display a drop-down list of adapters in the window
+  on the right, near the bottom.
 
   Select MarkLogic from the list.  If you don't see a
   MarkLogic option in the drop-down, then the adapter
   code (MarkLogicAdapter.jar) was not properly installed.
-  Make sure it's in the same directory as SaxonAdapter.jar
-  and GalaxAdapter.jar.
+  Make sure it's in the same directory as SaxonAdapter.jar.
 
-  Click the Options item on the left, under XQuery plugin.
+  Click the Adapter item on the left, under XQuery Plugin.
   A Mark Logic connection configuration window should
   appear on the right side.  If not, try closing the
   dialog and selecting the Plugin Options... menu again.
@@ -153,9 +155,11 @@ with the XQuery plugin:
   Fill in the connection parameters with the information
   needed to connect to your Content Interaction Server.
   An XDBC server listener must be configured on the CIS
-  instance you want to connect to.  The most common port
-  number for XDBC is 8002, but the adminstrator can setup
-  an XDBC listener on any port.
+  instance you want to connect to.  XDBC servers are
+  configured in the Content Interaction Server admin
+  control panel.  Contact the adminstrator if you're
+  trying to connect to a server that's not on your local
+  machine.
 
 * Test your Connection
 
@@ -178,10 +182,19 @@ with the XQuery plugin:
 
 * You're Done, Get to work.
 
+  You can select Use Buffer to send the content of
+  the currently active edit buffer to be run on the server.
+  This is helpul when developing XQuery code.
+
+  You can also select Use File to execute the content of
+  a file.  This can be useful when you want to capture
+  the output of an external XQuery script.
+
   If you encounter problems you can't resolve, or have
   question or comments, join the mailing list on the
   xq:zone website: http://xqzone.marklogic.com/discuss/
   or search the archives.
 
 ---
-Rh 7/14/2003
+Rh 7/16/2003
+Mark Logic Corporation

@@ -22,7 +22,7 @@
 
 <project name="j2ee" default="all" basedir=".">
 
-	<property name="release.version" value="0.1"/>
+	<property name="release.version" value="0.2"/>
 
 	<!-- Static definitions of where things are relative to the root -->
 	<property name="src.root" value="src"/>
@@ -175,7 +175,7 @@
 	<!-- ********************************************************** -->
 
 	<target name="all" depends="binarybundle,srcbundle">
-		<copy file="${doc.source}/README.txt"  todir="${products}"/> 
+		<copy file="${doc.source}/README.txt"  todir="${products}"/>
 	</target>
 
 </project>

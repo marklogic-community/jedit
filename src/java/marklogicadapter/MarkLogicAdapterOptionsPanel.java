@@ -41,7 +41,7 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 	private JTextField hostField = new JTextField (XQueryGUI.getProperty (HOST_PROPERTY));
 	private JTextField portField = new JTextField (XQueryGUI.getProperty (PORT_PROPERTY));
 	private JTextField usernameField = new JTextField (XQueryGUI.getProperty (USER_PROPERTY));
-	private JTextField passwordField = new JTextField (XQueryGUI.getProperty (PASS_PROPERTY));
+	private JTextField passwordField = new JPasswordField (XQueryGUI.getProperty (PASS_PROPERTY));
 //	private JCheckBox hostIsJndi;
 
 	public void _init ()
@@ -49,7 +49,7 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 		addSeparator("Mark Logic Content Interaction Server Connection Options");
 
 		addLabel (" ");
-		addLabel ("Specify host name and port of server");
+		addLabel ("Specify server host name and port");
 //		addLabel ("Specify host name and port of server, or JNDI DataSource URI");
 //
 //		hostIsJndi = addBooleanComponent ("Host field is DataSource URI", "marklogic.datasource.isjndi", false);
@@ -59,12 +59,12 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 //				portField.setEditable ( ! hostIsJndi.isSelected());
 //			}});
 
-		addComponent ("Host/DataSource", hostField, GridBagConstraints.HORIZONTAL);
+//		addComponent ("Host/DataSource", hostField, GridBagConstraints.HORIZONTAL);
+		addComponent ("Host", hostField, GridBagConstraints.HORIZONTAL);
 		addComponent ("Port", portField, GridBagConstraints.HORIZONTAL);
 
-		addSeparator();
 		addLabel (" ");
-		addLabel ("User name and password may be left blank if not required");
+		addLabel ("Specify user credentials");
 		addComponent ("User", usernameField, GridBagConstraints.HORIZONTAL);
 		addComponent ("Password", passwordField, GridBagConstraints.HORIZONTAL);
 
@@ -86,13 +86,10 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 
 	public void addLabel (String label)
 	{
-//		if(y != 0)
-//			addComponent(Box.createVerticalStrut(6));
-
-		Box box = new Box(BoxLayout.X_AXIS);
-		JLabel l = new JLabel(label); // this is changed !
-		l.setMaximumSize(l.getPreferredSize());
-		box.add(l);
+		Box box = new Box (BoxLayout.X_AXIS);
+		JLabel l = new JLabel (label);
+		l.setMaximumSize (l.getPreferredSize());
+		box.add (l);
 		box.add (Box.createGlue());
 
 		GridBagConstraints cons = new GridBagConstraints();
@@ -104,9 +101,8 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 		cons.weightx = 1.0f;
 		cons.insets = new Insets (1,0,1,0);
 
-		gridBag.setConstraints(box,cons);
+		gridBag.setConstraints (box,cons);
 
-		add(box);
+		add (box);
 	}
-
 }
