@@ -21,7 +21,7 @@
 
 	<!-- Products of this build -->
 	<property name="products" value="deliverable"/>
-	<property name="javadoc.zipfile" value="${products}/mljspjavadocs.zip"/>
+	<property name="javadoc.zipfile" value="${products}/mljeditjavadocs.zip"/>
 	<property name="plugin.output.jar" value="${products}/MarkLogicAdapter.jar"/>
 
 	<!-- Configurable flags that will affect how targets run -->

@@ -1,6 +1,22 @@
 /*
- * Copyright 2004 Mark Logic Corporation. All Rights Reserved.
+ * Copyright (c)2004 Mark Logic Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * The use of the Apache License does not indicate that this project is
+ * affiliated with the Apache Software Foundation.
  */
+
 package marklogicadapter;
 
 import com.marklogic.queryhelper.Query;
@@ -18,8 +34,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Adapter for the Jedit/XQuery plugin to send query requests
+ * to a Mark Logic Content Interation Server engine.
  * The class loading logic in the XQuery plugin requires that the
  * package name be the same as the class name, but in lower-case.
+ * @author Ron Hitchens, Mark Logic Corporation
  */
 public class MarkLogicAdapter implements Adapter
 {
@@ -64,7 +83,7 @@ public class MarkLogicAdapter implements Adapter
 	 */
 	public void loadContextFromString (String context) throws AdapterException
 	{
-		throw new AdapterException ("loadContextFromString is not yet implemented");
+		throw new AdapterException ("loadContextFromString is not implemented");
 	}
 
 	/*
