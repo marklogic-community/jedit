@@ -1,0 +1,27 @@
+# General plugin information
+plugin.com.marklogic.jedit.MarkLogicPlugin.activate=defer
+plugin.com.marklogic.jedit.MarkLogicPlugin.name=Mark Logic
+plugin.com.marklogic.jedit.MarkLogicPlugin.author=Ron Hitchens, Mark Logic Corporation
+plugin.com.marklogic.jedit.MarkLogicPlugin.version=0.7.0
+plugin.com.marklogic.jedit.MarkLogicPlugin.docs=com/marklogic/jedit/help.html
+plugin.com.marklogic.jedit.MarkLogicPlugin.jars=xqrunner.jar xdbc.jar xdmp.jar forms_rt.jar
+plugin.com.marklogic.jedit.MarkLogicPlugin.depend.0=jdk 1.4
+plugin.com.marklogic.jedit.MarkLogicPlugin.depend.1=jedit 04.02.01.00
+plugin.com.marklogic.jedit.MarkLogicPlugin.depend.2=plugin xmlindenter.XmlIndenterPlugin 0.3.3
+plugin.com.marklogic.jedit.MarkLogicPlugin.depend.3=plugin errorlist.ErrorListPlugin 1.3.2
+plugin.com.marklogic.jedit.MarkLogicPlugin.depend.4=plugin infoviewer.InfoViewerPlugin 1.2
+#plugin.com.marklogic.jedit.MarkLogicPlugin.docs=index.html
+
+# Plugins menu label
+plugin.com.marklogic.jedit.MarkLogicPlugin.menu=marklogic - marklogic.run-query
+
+marklogic.label=Mark Logic Console
+marklogic.run-query.label=Run Query
+marklogic.run-query.shortcut=C+/
+
+# Window Title
+marklogic.title=Mark Logic
+
+# Misc property settings
+options.marklogic.execute-button.go-value=Run Query
+options.marklogic.execute-button.stop-value=Cancel Query

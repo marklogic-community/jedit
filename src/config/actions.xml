@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE ACTIONS SYSTEM "actions.dtd">
+
+<ACTIONS>
+	<ACTION NAME="marklogic.run-query">
+		<CODE>
+			JPanel panel = view.getDockableWindowManager().getDockable (com.marklogic.jedit.MarkLogicPlugin.NAME);
+
+			com.marklogic.jedit.MainPanel.notifyRunQueryListener (panel);
+		</CODE>
+	</ACTION>
+</ACTIONS>
+

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.marklogic.jedit.RunPanel">
+  <grid id="997b" binding="rootPanel" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="3" left="5" bottom="0" right="5"/>
+    <constraints>
+      <xy x="97" y="70" width="410" height="479"/>
+      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="3f629" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints>
+          <xy x="5" y="74" width="400" height="239"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="b8aa6" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="7" y="9" width="142" height="16"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Send XQuery Result To"/>
+            </properties>
+          </component>
+          <grid id="4abca" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="15" left="0" bottom="10" right="0"/>
+            <constraints>
+              <xy x="7" y="155" width="386" height="77"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="15eed" class="javax.swing.JLabel">
+                <constraints>
+                  <xy x="0" y="17" width="244" height="16"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="File Mode (Data Type) of XQuery Result"/>
+                  <toolTipText value="The file type (editing mode), affects syntax highlighting and validation"/>
+                </properties>
+              </component>
+              <grid id="80dc4" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <xy x="0" y="40" width="386" height="27"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="b9b9b" class="javax.swing.JComboBox" binding="destBufferMode">
+                    <constraints>
+                      <xy x="0" y="0" width="46" height="27"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1"/>
+                    </constraints>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                  <hspacer id="1c30f">
+                    <constraints>
+                      <xy x="56" y="8" width="191" height="11"/>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="822ab" class="javax.swing.JCheckBox" binding="indentCheckbox">
+                    <constraints>
+                      <xy x="247" y="2" width="139" height="22"/>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                      <selected value="false"/>
+                      <text value="Indent XML/HTML"/>
+                      <toolTipText value="Apply XML indenting to the query output"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="8a1d4" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="5" left="0" bottom="5" right="0"/>
+            <constraints>
+              <xy x="7" y="32" width="386" height="91"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="69c54" class="javax.swing.JComboBox" binding="destThisBufferCombo">
+                <constraints>
+                  <xy x="0" y="32" width="386" height="27"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <toolTipText value="The buffer that will receive the query result"/>
+                </properties>
+              </component>
+              <component id="aa42f" class="javax.swing.JRadioButton" binding="destThisBufferRadio">
+                <constraints>
+                  <xy x="0" y="5" width="126" height="22"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text value="This Edit Buffer:"/>
+                  <toolTipText value="Send query output to a specific buffer"/>
+                </properties>
+              </component>
+              <grid id="18ccb" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <xy x="0" y="64" width="386" height="22"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <hspacer id="94185">
+                    <constraints>
+                      <xy x="0" y="5" width="191" height="11"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="34cb" class="javax.swing.JCheckBox" binding="destBufferAutoRaise">
+                    <constraints>
+                      <xy x="191" y="0" width="97" height="22"/>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                      <text value="Auto Select"/>
+                      <toolTipText value="Make buffer active when updated with a new query result"/>
+                    </properties>
+                  </component>
+                  <component id="f54c5" class="javax.swing.JCheckBox" binding="destBufferAutoSave">
+                    <constraints>
+                      <xy x="298" y="0" width="88" height="22"/>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                      <selected value="false"/>
+                      <text value="Auto Save"/>
+                      <toolTipText value="Force save to disk on query completion"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="aa58d" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <xy x="7" y="128" width="386" height="22"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a185" class="javax.swing.JRadioButton" binding="destNewBufferRadio">
+                <constraints>
+                  <xy x="0" y="0" width="135" height="22"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <selected value="true"/>
+                  <text value="A New Edit Buffer"/>
+                  <toolTipText value="Create a new buffer to hold the query result"/>
+                </properties>
+              </component>
+              <component id="2c43c" class="javax.swing.JTextField" binding="destNewBufferName">
+                <constraints>
+                  <xy x="145" y="0" width="241" height="22"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText value="File name to give the newly created edit buffer"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="5f62b" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="15" left="5" bottom="15" right="5"/>
+        <constraints>
+          <xy x="5" y="318" width="400" height="59"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ee8ab" class="javax.swing.JButton" binding="goButton">
+            <constraints>
+              <xy x="154" y="15" width="93" height="29"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1"/>
+            </constraints>
+            <properties>
+              <text value="Run Query"/>
+              <toolTipText value="Send the XQuery script to be executed"/>
+            </properties>
+          </component>
+          <hspacer id="12b82">
+            <constraints>
+              <xy x="5" y="24" width="149" height="11"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="ea65b">
+            <constraints>
+              <xy x="247" y="24" width="148" height="11"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <vspacer id="f327f">
+        <constraints>
+          <xy x="199" y="377" width="11" height="102"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2"/>
+        </constraints>
+      </vspacer>
+      <grid id="2ace2" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints>
+          <xy x="5" y="3" width="400" height="66"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="8b190" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="7" y="9" width="246" height="16"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Get XQuery Script From This Edit Buffer"/>
+            </properties>
+          </component>
+          <component id="f94e0" class="javax.swing.JComboBox" binding="sourceThisBufferCombo">
+            <constraints>
+              <xy x="7" y="32" width="386" height="27"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <toolTipText value="The buffer to use as the query source"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

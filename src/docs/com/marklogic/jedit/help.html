@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Mark Logic jEdit Plugin</title>
+<style>
+body {
+	font-family: arial, helvetica, sans-serif;
+	color: #113;
+}
+
+body h1 {
+	color: #000;
+	font-size: 1.4em;
+	padding: 10 0 0 0;
+}
+body h2 {
+	color: #000;
+	font-size: 1.2em;
+	padding: 10 0 0 0;
+}
+body p {
+	font-size: 1.0em;
+	padding: 0 1 0 10;
+}
+body ul li {
+	font-size: 0.95em;
+	padding: 0 0 3px 1;
+}
+</style>
+</head>
+<body>
+<div align="center"><h1>Mark Logic jEdit Plugin</h1></div>
+
+<h2>Contents</h2>
+<p>
+<a href="#howworks">How This Works</a><br>
+<a href="#layout">Laying Out jEdit</a><br>
+<a href="#config">Configuring The Plugin</a><br>
+<a href="#running">Running a Query</a><br>
+<a href="#docs">Online Documentation</a>
+</p>
+
+<a name="howworks"></a>
+<h2>How This Works</h2>
+<p>
+   The Mark Logic jEdit plugin is a connector that submits
+   queries to a Content Interaction Server engine and returns
+   the result.  The source of the query text is a jEdit
+   edit buffer of your choice and the result of the query
+   is stored to another buffer you choose.
+</p>
+<p>
+You can edit an XQuery script, run it and see the result very
+quickly and easily.
+</p>
+
+<a name="layout"></a>
+<h2>Laying Out jEdit</h2>
+<p>
+The easiest way to use this plugin is to dock it into the
+main jEdit view and split the editor pane horizontally
+so that you can see the file you're editing and the result
+pane at the same time.
+</p>
+<ul>
+<li>Open the Mark Logic plugin if it's not already open.  Select the menu:
+Plugins -&gt; Mark Logic -&gt; Mark Logic Console</li>
+<li>The Mark Logic Console will open as a floating window.
+Locate the little inverted triangle icon in the upper left
+and click it to drop down the docking menu.</li>
+<li>Select Dock At Right.  The floating console will close
+and the console will dock into the right side of the jEdit main window</li>
+<li>On the main jEdit toolbar, locate the Split Horizontally button
+(two triangles separated by a horizonal line).  Click that button and
+the main editor pane should split into two windows.</li>
+</ul>
+
+<p>
+Above each buffer window is a drop-down to select a currently
+open buffer.  A given buffer can be visible in more that one
+edit window.  What you want to do now is use the top edit window
+to edit your XQuery source, and use the lower one as the destination
+for the output.
+</p>
+<p>
+Focus the upper edit window and then select
+File -&gt; Open to open an existing file, or File -&gt; New to start
+a new, empty file.  In the Mark Logic Console, select the buffer to
+use as the XQuery source from the drop-down selector.
+</p>
+<p>
+Focus the lower edit window and select or create an empty buffer.
+In the console, select that buffer as the output destination.
+You may also select the New Buffer radio button to automatically
+create a new buffer the next time you run a query.
+Note that whichever edit window is active when you
+run the query will switch to the newly created buffer.  This
+is not a problem, but you may need to reselect the buffers to display
+the right one in each of the split panes.
+</p>
+<p>
+Once you've laid out the jEdit windows, the layout will be remembered
+when you restart jEdit.  There is no need to save the configuration.
+</p>
+
+<a name="config"></a>
+<h2>Configuring The Plugin</h2>
+<p>
+Before you can use the plugin you need to configure it
+so it knows where the server is located.  In the Mark Logic Console,
+click the Config tab at the top and enter either the
+hostname/port of the server or a JNDI lookup key and the user/password credentials.
+The information you enter will automatically be saved by jEdit
+and need not be entered on each run.
+</p>
+
+<a name="running"></a>
+<h2>Running a Query</h2>
+<p>
+Once you've selected which buffer to run the query from and where
+the result should go, click the Run Query button to send the query
+to the server.  There is also a menu item (Plugins -&gt; Mark Logic
+-&gt; Run Query) which you can use to run a query.  The menu item is
+not very useful, but it defines a shortcut key, Control-/, which
+can be used to run a query.  This can very handy for quick edit/run
+round-tripping.
+</p>
+
+<a name="docs"></a>
+<h2>Online Documentation</h2>
+<p>
+The Mark Logic <b>xq:zone</b> Developer Community site
+(<a href="http://xqzone.marklogic.com">xqzone.marklogic.com</a>)
+has all Content Interation Server documentation online for easy
+reference.  The documentation root page is at
+<a href="http://xqzone.marklogic.com/pubs/">http://xqzone.marklogic.com/pubs/</a>.
+</p>
+
+<a name="xqzone"></a>
+<h2>xq:zone Site</h2>
+<p>
+The code for this open source project is hosted
+on <b>xq:zone</b>.  Please visit the Workshop page
+(<a href="http://xqzone.marklogic.com/code/">http://xqzone.marklogic.com/code/</a>)
+to check for updates and further information.
+</p>
+
+<p>
+Hyoerlinks are not active in the console help panel.  To follow
+the links, open the jEdit Help Viewer (F1) and select the help section
+for Mark Logic.  Or copy/paste the URL into a web browser.  Unfortunately,
+the builtin Java HTML renderer in jEdit does not display the XHTML pages
+on the <b>xq:zone</b> site very accurately.
+</p>
+
+<p>
+</p>
+
+
+</body>
+<html>

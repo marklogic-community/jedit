@@ -2,25 +2,17 @@
 What is this?
 -------------
 
-This project is a Mark Logic connection adapter
-for the aXe XQuery plugin for the jEdit editor.
+This project is a Mark Logic plugin for the
+jEdit text editor.  jEdit is an open source
+editor that's hosted on SourceForge
+(http://jedit.sourceforge.net).  jEdit depends
+heavily on plugins to extend its functionality.
 
-jEdit is an open source editor that's hosted on
-SourceForge (http://jedit.sourceforge.net).  jEdit
-depends heavily on plugins to extend its functionality.
-
-Pieter Wellens and Wim Le Page have written a plugin
-that supports XQuery execution from within jEdit.
-Their plugin is known as aXe (Advanced XML Editor).
-The aXe XQuery plugin accepts adapters (plugins to
-the XQuery plugin) that provide connectivity to
-various XQuery engines.  See their site at
-http://plantijn.ruca.ua.ac.be/~wellenslepage/ for
-full details.
-
-The code in this project is an adapter that allows
-the aXe XQuery plugin to run queries against a Mark
-Logic Content Interaction Server engine.
+This plugin implements a console that lets you
+submit the current content of an edit buffer
+to a Content Interaction Server to be executed
+as an XQuery script.  The output of the query
+is stored in another buffer of your choosing.
 
 This code is open source and licensed under the
 Apache 2.0 license.  For more information on the
@@ -31,7 +23,7 @@ Where did this come from?
 -------------------------
 
 This project is hosted on the Mark Logic Developer
-Support site http://xqzone.marklogic.com.  If you
+Community site http://xqzone.marklogic.com.  If you
 did not get this code from there, please visit the
 site to make sure you have the most current version.
 
@@ -43,20 +35,12 @@ How do I install this?
 ----------------------
 
 The first thing you need is a recent version of jEdit.
-The aXe XQuery plugin requires a jEdit version of at
-least 4.2pre14 (http://www.jedit.org/index.php?page=download).
+This plugin depeds on features in the 4.2 version of
+jEdit.  As of this writing, version 4.2final has been
+released.
 
-The aXe XQuery plugin files are hosted at
-http://plantijn.ruca.ua.ac.be/~wellenslepage/download.php
-but the good news is that the aXe XQuery plugin will
-be downloaded and installed automatically by the steps
-below.
-
-Some of the aXe jar files are under Subversion control
-in this project but you should not use them for the
-installation.  The jars here are used to compile
-and test the Mark Logic adapter and may not be the most
-current.
+This plugin also depends on a few other standard plugins
+which must first be installed.
 
 Follow these steps to install and setup jEdit
 with the XQuery plugin:
@@ -67,19 +51,24 @@ with the XQuery plugin:
 * Follow the installation instructions to install
   jEdit on your platform.
 
-  If you already have jEdit (version >= 4.2pre14)
+  If you already have jEdit (version >= 4.2)
   installed, you can skip ahead to the Install
-  The Mark Logic Adapter step.
+  The Mark Logic Plugin step.
 
 * Run jEdit.  Select Plugins -> Plugin Manager
 
-  On the popup window, select the Install tab.
+  In the popup window, select the Install tab.
 
-  Locate the XQuery Plugin in the list (in the
-  HTML and XML Category).
+  Scroll through the list and select the following
+  plugins:
 
-  Select the XQuery checkbox.  Several other
-  plugins should also be automatically be checked.
+    * ErrorList
+    * InfoViewer
+    * XML
+    * XML Indenter
+
+  Note: Plugins are listed alphabetically within
+  categories.
 
   Select any other plugins you'd also like to install.
 
@@ -89,112 +78,139 @@ with the XQuery plugin:
   Be patient, the jEdit plugin site is often heavily
   loaded and may be very slow.
 
-  When downloading is complete, exit jEdit.
+* When downloading is complete, exit jEdit.
 
-* Install The Mark Logic Adapter
+* Install The Mark Logic Plugin
 
-  Unpack the contents of MLJeditXQuery.zip from
-  this distribution and move the jar files to
-  your user-specific jEdit jars directory.  There
-  are four jar files in there: MarkLogicAdapter.jar,
-  xdbc.jar, xdmp.jar and jdom.jar.
+  Unpack the contents of MLJeditXQuery-x.x.x.zip
+  from this distribution and move the jar files to
+  your jEdit application jars directory.  There
+  are several jar files in there to install:
 
-  On Windows this is usually the directory
-  c:\Documents and Settings\{username}\jEdit\jars,
-  where {username} is your login user name.
-  On unix, linux or OS X, this directory is at
-  $HOME/.jedit/jars.
+     * MarkLogicPlugin.jar
+     * xqrunner.jar
+     * xdbc.jar
+     * xdmp.jar
+     * jdom.jar
+     * forms_rt.jar
 
-  Note: Plugin jars may also go in the jars directory
-  under the jEdit application directory, but the XQuery
-  plugin only searches the user-specific directory for
-  its adapters.
+  On Windows the application directory is usually
+  c:\Program Files\jEdit\jars, or wherever you selected
+  during the install.  On linux/unix/Mac it will be the
+  "jars" subdirectory at the location you selected
+  during the install.
 
-  Note 2: Yes, you can use this adapter on Mac OS X
+  Note: Plugin jars may also go in a user-specific
+  jars directory (c:\Program File\.jEdit\jars on
+  Windows, $HOME/.jedit/jars on linux/unix).  If you
+  have older versions of Mark Logic jar files there,
+  please remove them at this point.  In the future,
+  when we register the Mark Logic Plugin with the
+  jEdit site, it will auto-download to the application
+  jars directory.
+
+  Note 2: This version of the plugin comes with the
+  CIS 2.2 xdbc/xdmp jar files.  If you have older
+  ones installed in a jEdit directory please remove
+  them now.
+
+  Note 3: Yes, you can use this plugin on Mac OS X
   or any other jEdit-supported platform.  It talks
   to the CIS server over the network with XDBC.
 
-* Setup XQuery syntax highlighting
+* Setup XQuery Syntax Highlighting
 
-  If you want XQuery syntax highlighting enabled, fetch
-  the syntax specification file from the XQuery site
-  at http://plantijn.ruca.ua.ac.be/~wellenslepage/downloads/
-  (see the very bottom of the page).
+  If you want XQuery syntax highlighting enabled, install
+  the XQuery file mode descriptor.
 
-  Copy the xq.xml file to c:\Program Files\jEdit\modes
-  directory.  On the unix/linux OSs, this will be where
-  you installed jEdit in the first step above.
+  Included in the MarkLogic-x.x.x.zip distribution
+  jar file is a file named xq.xml.  Copy this file
+  to jEdit's modes directory (on Windows this is
+  c:\Program Files\jEdit\modes).
 
   Edit the file named "catalog" in that directory and
   append the following line at the bottom, immediately
   above the line that reads "</MODES>":
 
-  <MODE NAME="xq" FILE="xq.xml" FILE_NAME_GLOB="*.{xq,xqy}" />
+  <MODE NAME="xq" FILE="xq.xml" FILE_NAME_GLOB="*.{xq,xqy,xquery}" />
 
-* Restart jEdit
+* Startup jEdit
 
-  Select the Plugins -> Plugin Options... menu item.
-  On the popup window, find the XQuery Plugin item in
-  the tree listing on the left.  Expand the item if
-  you don't see the General and Options sub-items.
+* Open the Mark Logic Console
 
-  Click the General item.  The main window on the right
-  will display a drop-down list of adapters in the window
-  on the right, near the bottom.
+  Select the Plugins -> Mark Logic -> Mark Logic Console
+  menu item.  A floating window should popup with the
+  Mark Logic logo in the lower right corner.  If you
+  don't see Mark Logic in the Plugins menu, then the
+  jar files have not been installed properly.
 
-  Select MarkLogic from the list.  If you don't see a
-  MarkLogic option in the drop-down, then the adapter
-  code (MarkLogicAdapter.jar) was not properly installed.
-  Make sure it's in the same directory as SaxonAdapter.jar.
-
-  Click the Adapter item on the left, under XQuery Plugin.
-  A Mark Logic connection configuration window should
-  appear on the right side.  If not, try closing the
-  dialog and selecting the Plugin Options... menu again.
-
-  Fill in the connection parameters with the information
-  needed to connect to your Content Interaction Server.
-  An XDBC server listener must be configured on the CIS
-  instance you want to connect to.  XDBC servers are
-  configured in the Content Interaction Server admin
-  control panel.  Contact the adminstrator if you're
-  trying to connect to a server that's not on your local
-  machine.
+  Select the Help tab at the top of that window for
+  information about how to configure and use the Mark
+  Logic plugin.
 
 * Test your Connection
 
-  Select the Plugins -> Xquery Plugin -> Xquery menu item.
-  A small popup window should come up, usually to the right
-  of your main edit window.
+  Once you've configured the plugin with information
+  about your XDBC server try a test to make sure it's
+  connecting.
 
-  Clear the Base URI text field, it's not used.
+  Select an empty buffer and type "Hello World" (with
+  the quotes).  In the console, choose that buffer from
+  the source drop-down.  For the destination, select
+  New Buffer.
 
-  Select "No Context" option for XML Context and "Use Pane"
-  for XQuery Input.
+  Click the Run Query button.
 
-  In the small text area at the bottom of the XQuery window,
-  enter (including the quotes) "Hello World"
+  A new buffer should open up and be set to Hello World
+  (without quotes).  If so, the query was successful.
+  If not, check your connection information and try
+  again.
 
-  Click the "XML + XQuery =" button at the bottom of the
-  XQuery window.  If the execution is successful, a new
-  untitled edit buffer will appear in the main jEdit window
-  with the text Hello World (without quotes).
 
 * You're Done, Get to work.
-
-  You can select Use Buffer to send the content of
-  the currently active edit buffer to be run on the server.
-  This is helpul when developing XQuery code.
-
-  You can also select Use File to execute the content of
-  a file.  This can be useful when you want to capture
-  the output of an external XQuery script.
 
   If you encounter problems you can't resolve, or have
   question or comments, join the mailing list on the
   xq:zone website: http://xqzone.marklogic.com/discuss/
   or search the archives.
 
+
+What's Missing?
+---------------
+
+Additional features are planned, but I'm releasing the
+plugin now to get it out in the world and get some
+feedback.  These are some of the things that I plan
+to do, but haven't been able get done yet:
+
+* Fully support CIS 2.2 features.
+
+* Actually implement the Server Profiles feature
+
+* More reliably cancel running queries (this is
+  not fully implemented yet).
+
+* Add a panel to the console to define external
+  variables that will be sent with the query.
+
+* Add Document Load/Fetch/Browse panel to aid in
+  managing documents in CIS
+
+* Deal with CLOBs and BLOBs.
+
+* In-process HTML rendering of query output
+  (This may be limited in usefullness because
+  the Java JEditorPane widget doesn't cope very
+  well with complex HTML.  For now, use the
+  Auto Save option for query output and point
+  your favorite browser at the file.  Then hit
+  reload on the browser every time you run
+  the query)
+
+If you have additional ideas, post them to the
+xq:zone mailing list and/or implement the new
+features yourself and sent me the code.
+
 ---
-Rh 7/16/2003
+Rh 9/21/2003
 Mark Logic Corporation

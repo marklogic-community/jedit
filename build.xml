@@ -22,14 +22,14 @@
 
 <project name="jeditplugin" default="all" basedir=".">
 
-	<property name="release.version" value="0.2"/>
+	<property name="release.version" value="0.7.0"/>
 
 	<!-- Static definitions of where things are relative to the root -->
 	<property name="src.root" value="src"/>
 	<property name="java.source" value="${src.root}/java"/>
 	<property name="junit.source" value="${src.root}/junit"/>
 	<property name="config.source" value="${src.root}/config"/>
-	<property name="webroot.source" value="${src.root}/webroot"/>
+	<property name="images.source" value="${src.root}/images"/>
 	<property name="doc.source" value="${src.root}/docs"/>
 	<property name="buildtmp" value="buildtmp"/>
 	<property name="compiled.classes.dir" value="${buildtmp}/classes"/>
@@ -38,16 +38,34 @@
 
 	<!-- Jar files that are under source control in this tree -->
 	<property name="jarlib" value="src/lib"/>
-	<property name="junit.jar" value="${jarlib}/junit.jar"/>
-	<property name="jedit.jar" value="${jarlib}/jedit.jar"/>
-	<property name="xqueryplugin.jar" value="${jarlib}/XQuery.jar"/>
-	<property name="xdbc.jar" value="${jarlib}/xdbc.jar"/>
-	<property name="xdmp.jar" value="${jarlib}/xdmp.jar"/>
-	<property name="jdom.jar" value="${jarlib}/jdom.jar"/>
+	<property name="junit.jar" value="junit.jar"/>
+	<property name="jedit.jar" value="jedit.jar"/>
+	<property name="xqueryplugin.jar" value="XQuery.jar"/>
+	<property name="xdbc.jar" value="xdbc.jar"/>
+	<property name="xdmp.jar" value="xdmp.jar"/>
+	<property name="xqrunner.jar" value="xqrunner.jar"/>
+	<property name="jdom.jar" value="jdom.jar"/>
+	<property name="intellijforms.jar" value="forms_rt.jar"/>
+	<property name="indenter.jar" value="XmlIndenter.jar"/>
+	<property name="infoviewer.jar" value="InfoViewer.jar"/>
+	<property name="errorlist.jar" value="ErrorList.jar"/>
+
+	<property name="lib.junit.jar" value="${jarlib}/${junit.jar}"/>
+	<property name="lib.jedit.jar" value="${jarlib}/${jedit.jar}"/>
+	<property name="lib.xqueryplugin.jar" value="${jarlib}/${xqueryplugin.jar}"/>
+	<property name="lib.xdbc.jar" value="${jarlib}/${xdbc.jar}"/>
+	<property name="lib.xdmp.jar" value="${jarlib}/${xdmp.jar}"/>
+	<property name="lib.xqrunner.jar" value="${jarlib}/${xqrunner.jar}"/>
+	<property name="lib.jdom.jar" value="${jarlib}/${jdom.jar}"/>
+	<property name="lib.intellijforms.jar" value="${jarlib}/${intellijforms.jar}"/>
+	<property name="lib.indenter.jar" value="${jarlib}/${indenter.jar}"/>
+	<property name="lib.infoviewer.jar" value="${jarlib}/${infoviewer.jar}"/>
+	<property name="lib.errorlist.jar" value="${jarlib}/${errorlist.jar}"/>
 
 	<!-- Intermediate generated files -->
 	<property name="javadoc.zipfile" value="${generated.files}/MLAdapterJavadocs.zip"/>
-	<property name="plugin.output.jar" value="${generated.files}/MarkLogicAdapter.jar"/>
+	<property name="adapter.output.jar" value="${generated.files}/MarkLogicAdapter.jar"/>
+	<property name="plugin.output.jar" value="${generated.files}/MarkLogicPlugin.jar"/>
 
 	<!-- Products of this build -->
 	<property name="products" value="deliverable"/>
@@ -60,7 +78,6 @@
 	<property name="junit.disabled" value="true"/>			<!-- true | false -->
 
 	<!-- ********************************************************** -->
-
 
 	<target name="init">
 		<mkdir dir="${buildtmp}"/>
@@ -79,23 +96,60 @@
 
 	<!-- ********************************************************** -->
 
+	<fileset id="jarlib.dist" dir="${jarlib}">
+		<include name="${xdbc.jar}"/>
+		<include name="${xdmp.jar}"/>
+		<include name="${jdom.jar}"/>
+		<include name="${xqrunner.jar}"/>
+		<include name="${intellijforms.jar}"/>
+	</fileset>
+
+	<fileset id="docs.dist" dir="${doc.source}">
+		<include name="*"/>
+		<exclude name="com"/>
+	</fileset>
+
+	<fileset id="config.dist" dir="${config.source}">
+		<include name="xq.xml"/>
+	</fileset>
+
+	<fileset id="plugin.config.dist" dir="${config.source}">
+		<include name="*.props"/>
+		<include name="*.xml"/>
+		<exclude name="xq.xml"/>
+	</fileset>
+
+	<fileset id="plugin.classes.dist" dir="${compiled.classes.dir}">
+		<exclude name="**/Test*.class"/>
+		<exclude name="marklogicadapter/**"/>
+		<exclude name="com/marklogic/queryhelper/**"/>
+	</fileset>
+
+
 	<path id="plugin.compile.classpath">
-		<pathelement path="${xdbc.jar}"/>
-		<pathelement path="${xdmp.jar}"/>
-		<pathelement path="${jdom.jar}"/>
-		<pathelement path="${xqueryplugin.jar}"/>
-		<pathelement path="${jedit.jar}"/>
+		<pathelement path="${lib.xdbc.jar}"/>
+		<pathelement path="${lib.xdmp.jar}"/>
+		<pathelement path="${lib.jdom.jar}"/>
+		<pathelement path="${lib.xqrunner.jar}"/>
+		<pathelement path="${lib.jedit.jar}"/>
+		<pathelement path="${lib.intellijforms.jar}"/>
+		<pathelement path="${lib.indenter.jar}"/>
+		<pathelement path="${lib.infoviewer.jar}"/>
+		<pathelement path="${lib.errorlist.jar}"/>
+		<pathelement path="${lib.xqueryplugin.jar}"/>
 		<pathelement path="${compiled.classes.dir}"/>
 	</path>
 
 	<path id="plugin.testcases.classpath">
-		<pathelement path="${junit.jar}"/>
+		<pathelement path="${lib.junit.jar}"/>
 		<pathelement path="${compiled.classes.dir}"/>
 	</path>
 
 	<path id="xdoclet.classpath">
 		<pathelement path="${compiled.classes.dir}"/>
 	</path>
+
+	<!-- ********************************************************** -->
 
 	<target name="compile.plugin" depends="init">
 		<javac classpathref="plugin.compile.classpath" srcdir="${java.source}"
@@ -114,30 +168,41 @@
 
 		<junit printsummary="on" haltonerror="${junit.halt.on.error}" showoutput="true">
 			<classpath refid="plugin.testcases.classpath"/>
-				<formatter type="plain" usefile="false"/>
+			<formatter type="plain" usefile="false"/>
 
-				<batchtest fork="no">
-						<fileset dir="${junit.source}" includes="**/Test*.java"/>
-				</batchtest>
+			<batchtest fork="no">
+				<fileset dir="${junit.source}" includes="**/Test*.java"/>
+			</batchtest>
 		</junit>
 	</target>
 
-	<target name="generate.plugin.jar" depends="test.plugin">
-		<jar jarfile="${plugin.output.jar}">
+	<!-- Soon to be deprecated -->
+	<target name="generate.adapter.jar" depends="test.plugin">
+		<jar jarfile="${adapter.output.jar}">
+			<!-- TODO: Filter classes -->
 			<fileset dir="${compiled.classes.dir}">
 				<exclude name="**/Test*.class"/>
 			</fileset>
 		</jar>
 	</target>
 
-	<target name="plugin" depends="generate.plugin.jar"/>
+	<target name="generate.plugin.jar" depends="test.plugin">
+		<jar jarfile="${plugin.output.jar}">
+			<fileset refid="plugin.config.dist"/>
+			<fileset refid="plugin.classes.dist"/>
+			<fileset dir="${images.source}"/>
+			<fileset dir="${doc.source}"/>
+		</jar>
+	</target>
+
+	<target name="plugin" depends="generate.plugin.jar, generate.adapter.jar"/>
 
 	<!-- ********************************************************** -->
 
 	<target name="javadoc" depends="plugin">
 		<mkdir dir="${javadoc.dir}"/>
 		<javadoc sourcepath="${java.source}" destdir="${javadoc.dir}" packagenames="*"
-			author="true" version="true" windowtitle="Mark Logic JSP TagLib">
+			author="true" version="true" windowtitle="Mark Logic jEdit Plugin">
 
 			<classpath refid="plugin.compile.classpath"/>
 			<doctitle><![CDATA[<h1>Mark Logic jEdit XQuery Plugin</h1>]]></doctitle>
@@ -151,15 +216,10 @@
 
 	<target name="binarybundle" depends="init,plugin,javadoc">
 		<zip zipfile="${release.bundle}">
-			<fileset dir="${doc.source}">
-				<include name="*"/>
-			</fileset>
+			<fileset refid="docs.dist"/>
+			<fileset refid="config.dist"/>
 			<fileset file="${plugin.output.jar}" />
-			<fileset dir="${jarlib}">
-				<include name="xdbc.jar"/>
-				<include name="xdmp.jar"/>
-				<include name="jdom.jar"/>
-			</fileset>
+			<fileset refid="jarlib.dist"/>
 		</zip>
 	</target>
 
@@ -176,6 +236,11 @@
 
 	<target name="all" depends="binarybundle,srcbundle">
 		<copy file="${doc.source}/README.txt"  todir="${products}"/>
+	</target>
+
+	<!-- FIXME: Testing aid.  Delete this target for release -->
+	<target name="ron" depends="all">
+		<copy file="${plugin.output.jar}"  todir="/Users/ron/.jedit/jars"/>
 	</target>
 
 </project>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.marklogic.jedit.ConfigPanel">
+  <grid id="adddb" binding="rootPanel" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="193" y="147" width="301" height="408"/>
+      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="27786" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="3" bottom="3" right="3"/>
+        <constraints>
+          <xy x="5" y="160" width="291" height="86"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="bd332" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="5" y="9" width="147" height="16"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Connection Credentials"/>
+            </properties>
+          </component>
+          <grid id="d0799" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <xy x="5" y="32" width="281" height="49"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="9fcd4" class="javax.swing.JLabel">
+                <constraints>
+                  <xy x="0" y="3" width="28" height="16"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="User"/>
+                  <toolTipText value="The user name to connect as"/>
+                </properties>
+              </component>
+              <component id="5f621" class="javax.swing.JLabel">
+                <constraints>
+                  <xy x="0" y="30" width="59" height="16"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="Password"/>
+                </properties>
+              </component>
+              <component id="ddc42" class="javax.swing.JPasswordField" binding="passwordText">
+                <constraints>
+                  <xy x="69" y="27" width="150" height="22"/>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                    <preferred-size width="150" height="-1"/>
+                    <maximum-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText value="The password for the specified user"/>
+                </properties>
+              </component>
+              <component id="3f906" class="javax.swing.JTextField" binding="userText">
+                <constraints>
+                  <xy x="69" y="0" width="150" height="22"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                    <preferred-size width="150" height="-1"/>
+                    <maximum-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText value="User name to connect as"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <vspacer id="6a0d1">
+        <constraints>
+          <xy x="145" y="349" width="11" height="54"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2"/>
+        </constraints>
+      </vspacer>
+      <grid id="b23e4" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="3" bottom="3" right="3"/>
+        <constraints>
+          <xy x="5" y="251" width="291" height="34"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="631ea" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="5" y="10" width="82" height="16"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="Server Profile"/>
+            </properties>
+          </component>
+          <component id="aebca" class="javax.swing.JComboBox" binding="serverProfileSelector">
+            <constraints>
+              <xy x="97" y="7" width="192" height="22"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1"/>
+            </constraints>
+            <properties>
+              <editable value="true"/>
+              <enabled value="false"/>
+              <toolTipText value="Select a server profile"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3ccae" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="3" bottom="3" right="3"/>
+        <constraints>
+          <xy x="5" y="290" width="291" height="59"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="301dd" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="5" y="9" width="91" height="16"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Tab Placement"/>
+            </properties>
+          </component>
+          <grid id="baf3b" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <xy x="5" y="32" width="281" height="22"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="2f77f" class="javax.swing.JRadioButton" binding="tabsLeftRadio">
+                <constraints>
+                  <xy x="0" y="0" width="50" height="22"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="Left"/>
+                </properties>
+              </component>
+              <component id="3ae51" class="javax.swing.JRadioButton" binding="tabsTopRadio">
+                <constraints>
+                  <xy x="66" y="0" width="50" height="22"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <selected value="true"/>
+                  <text value="Top"/>
+                </properties>
+              </component>
+              <component id="caa3e" class="javax.swing.JRadioButton" binding="tabsBottomRadio">
+                <constraints>
+                  <xy x="131" y="0" width="71" height="22"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="Bottom"/>
+                </properties>
+              </component>
+              <component id="4de90" class="javax.swing.JRadioButton" binding="tabsRightRadio">
+                <constraints>
+                  <xy x="217" y="0" width="59" height="22"/>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="Right"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="704d1" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="5" y="5" width="291" height="150"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <grid id="6774c" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="5" left="3" bottom="3" right="3"/>
+            <constraints>
+              <xy x="2" y="2" width="287" height="84"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="eeeea" class="javax.swing.JRadioButton" binding="hostRadio">
+                <constraints>
+                  <xy x="3" y="5" width="211" height="22"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <selected value="true"/>
+                  <text value="Host Name and Port of Server"/>
+                  <toolTipText value="Use hostname/port to specify server location "/>
+                </properties>
+              </component>
+              <grid id="587c6" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <xy x="3" y="32" width="281" height="49"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ef79e" class="javax.swing.JTextField" binding="hostnameText">
+                    <constraints>
+                      <xy x="40" y="0" width="241" height="22"/>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                      <toolTipText value="The host name or IP address of the server"/>
+                    </properties>
+                  </component>
+                  <component id="17b85" class="javax.swing.JLabel">
+                    <constraints>
+                      <xy x="0" y="3" width="30" height="16"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Host"/>
+                    </properties>
+                  </component>
+                  <component id="8d5c8" class="javax.swing.JLabel">
+                    <constraints>
+                      <xy x="0" y="30" width="25" height="16"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Port"/>
+                    </properties>
+                  </component>
+                  <component id="5efc0" class="javax.swing.JTextField" binding="portText">
+                    <constraints>
+                      <xy x="40" y="27" width="120" height="22"/>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                        <preferred-size width="150" height="-1"/>
+                        <maximum-size width="120" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <toolTipText value="Port number of XDBC listener on server"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="3d450" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="5" left="3" bottom="3" right="3"/>
+            <constraints>
+              <xy x="2" y="91" width="287" height="57"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="61892" class="javax.swing.JRadioButton" binding="datasourceRadio">
+                <constraints>
+                  <xy x="3" y="5" width="154" height="22"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0"/>
+                </constraints>
+                <properties>
+                  <text value="JNDI DataSource URI"/>
+                </properties>
+              </component>
+              <grid id="a3f7f" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <xy x="3" y="32" width="281" height="22"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ed47a" class="javax.swing.JLabel">
+                    <constraints>
+                      <xy x="0" y="3" width="71" height="16"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Datasource"/>
+                    </properties>
+                  </component>
+                  <component id="2d866" class="javax.swing.JTextField" binding="datasourceText">
+                    <constraints>
+                      <xy x="81" y="0" width="200" height="22"/>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                      <toolTipText value="JNDI lookup key of DataSource object"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
