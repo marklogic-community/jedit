@@ -42,7 +42,10 @@ import java.io.IOException;
 public class QueryExecuter
 {
 	private static final int RETRIES = 10;
-	private static final int RETRY_WAIT = 30000;  // ms
+	private static final long RETRY_WAIT = 30000;  // ms
+
+	private int retries = RETRIES;
+	private long retryWait = RETRY_WAIT;
 
 	private XDBCConnection con;
 	private Logger log = Logger.getLogger(this.getClass().getName());
@@ -51,12 +54,27 @@ public class QueryExecuter
 	  this.con = con;
 	}
 
+	public void setRetries (int retries)
+	{
+		this.retries = retries;
+	}
+
+	public void setRetryWait (long retryWait)
+	{
+		this.retryWait = retryWait;
+	}
+
 	public void setLogger(Logger log) {
 	  this.log = log;
 	}
 
 	private Object execute(Query query, ResultHandler handler) throws QueryException {
-	  int retriesLeft = RETRIES;
+	  int retriesLeft = retries;
+
+	  if (retries <= 0) {
+	    retriesLeft = 1;
+	  }
+
 	  while (retriesLeft > 0) {
 		XDBCStatement stmt = null;
 		XDBCResultSequence result = null;
@@ -70,8 +88,13 @@ public class QueryExecuter
 		catch (XDBCException e) {
 		  retriesLeft--;
 		  log.log(Level.WARNING, "XDBC problem: Retries left: " +
-								 retriesLeft + ": " + e, e);
-		  sleep(RETRY_WAIT);
+			  retriesLeft + ": " + e, e);
+
+		  if (retriesLeft <= 0) {
+			  throw new QueryException ("Giving up on query (" + e + "): " + query);
+		  }
+
+		  sleep (retryWait);
 		}
 		finally {
 		  if (stmt != null) {
@@ -220,7 +243,7 @@ public class QueryExecuter
 		throw new QueryException("Got empty answer: " + query);
 	}
 
-	private void sleep(int ms) {
+	private void sleep (long ms) {
 	  try { Thread.sleep(ms); } catch (InterruptedException e) { }
 	}
 

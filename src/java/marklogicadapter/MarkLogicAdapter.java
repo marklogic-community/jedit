@@ -42,9 +42,9 @@ import java.io.IOException;
  */
 public class MarkLogicAdapter implements Adapter
 {
-	private Properties properties = null;
-	private String baseUri = null;
-	private String docUri = null;
+	protected Properties properties = null;
+//	private String baseUri = null;
+//	private String docUri = null;
 	private String performance = "";
 	private XDMPDataSource dataSource = null;
 
@@ -58,7 +58,7 @@ public class MarkLogicAdapter implements Adapter
 	 */
 	public void setProperties (Properties prop) throws AdapterException
 	{
-		properties = prop;
+//		properties = prop;
 		dataSource = null;
 	}
 
@@ -67,7 +67,9 @@ public class MarkLogicAdapter implements Adapter
 	 */
 	public void setBaseUri (String uri) throws AdapterException
 	{
-		baseUri = uri;
+//		baseUri = uri;
+
+		throw new AdapterException ("Setting a base URI is not implemented");
 	}
 
 	/*
@@ -75,7 +77,9 @@ public class MarkLogicAdapter implements Adapter
 	 */
 	public void loadContextFromFile (String path) throws AdapterException
 	{
-		docUri = path;		// assume path is a CIS-resident URI
+//		docUri = path;		// assume path is a CIS-resident URI
+
+		throw new AdapterException ("Setting a buffer or file context is not implemented");
 	}
 
 	/*
@@ -91,8 +95,15 @@ public class MarkLogicAdapter implements Adapter
 	 */
 	public String evaluateFromString (String xquery) throws AdapterException
 	{
+		XDBCConnection connection = null;
+
 		try {
-			QueryExecuter executer = new QueryExecuter (getXdbcConnection());
+			connection = getXdbcConnection();
+
+			QueryExecuter executer = new QueryExecuter (connection);
+
+			executer.setRetries (0);
+
 			Query query = new Query (xquery);
 			Object [] result = executer.execute (query);
 			StringBuffer sb = new StringBuffer();
@@ -109,9 +120,18 @@ public class MarkLogicAdapter implements Adapter
 
 			return (sb.toString());
 		} catch (Exception e) {
-			throw new AdapterException ("cannot connect to CIS: " + e, e);
-//		} catch (Throwable e) {
-//			return (e.toString ());
+			String host = XQueryGUI.getProperty (MarkLogicAdapterOptionsPanel.HOST_PROPERTY);
+			String portStr = XQueryGUI.getProperty (MarkLogicAdapterOptionsPanel.PORT_PROPERTY);
+			String target = host + ": " + portStr;
+			String message;
+
+			if (connection == null) {
+				message = "Connot connect to " + target + ": " + e;
+			} else {
+				message = "(" + target + "): " + e;
+			}
+
+			throw new AdapterException (message, e);
 		}
 	}
 
@@ -125,7 +145,7 @@ public class MarkLogicAdapter implements Adapter
 			StringBuffer sb = new StringBuffer();
 			String line;
 
-			while ((line = reader.readLine ()) != null) {
+			while ((line = reader.readLine()) != null) {
 				sb.append (line).append ("\n");
 			}
 
@@ -154,6 +174,8 @@ public class MarkLogicAdapter implements Adapter
 		return (performance);
 	}
 
+	// -------------------------------------------------------------------
+
 	private XDBCConnection getXdbcConnection()
 		throws AdapterException
 	{
@@ -176,13 +198,17 @@ public class MarkLogicAdapter implements Adapter
 		String pass = XQueryGUI.getProperty (MarkLogicAdapterOptionsPanel.PASS_PROPERTY);
 
 		try {
+			XDBCConnection connection = null;
+
 			if (user == null) {
-				return (dataSource.getConnection());
+				connection = dataSource.getConnection();
 			} else {
-				return (dataSource.getConnection (user, pass));
+				connection = dataSource.getConnection (user, pass);
 			}
+
+			return (connection);
 		} catch (XDBCException e) {
-			throw new AdapterException ("Cannot obtain connection", e);
+			throw new AdapterException ("Cannot obtain connection: " + e, e);
 		}
 	}
 }
