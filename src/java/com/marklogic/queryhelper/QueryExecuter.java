@@ -91,7 +91,7 @@ public class QueryExecuter
 			  retriesLeft + ": " + e, e);
 
 		  if (retriesLeft <= 0) {
-			  throw new QueryException ("Giving up on query (" + e + "): " + query);
+			  throw new QueryException ("Giving up on query (" + e + "): " + query, e);
 		  }
 
 		  sleep (retryWait);

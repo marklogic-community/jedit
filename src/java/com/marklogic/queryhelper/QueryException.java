@@ -28,4 +28,14 @@ public class QueryException extends RuntimeException
 	public QueryException() { }
 
 	public QueryException(String msg) { super(msg); }
+
+	public QueryException (String message, Throwable cause)
+	{
+		super (message, cause);    // FIXME: auto-generated
+	}
+
+	public QueryException (Throwable cause)
+	{
+		super (cause);    // FIXME: auto-generated
+	}
 }
