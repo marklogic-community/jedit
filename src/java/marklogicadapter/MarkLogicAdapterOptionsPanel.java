@@ -25,8 +25,6 @@ import xquery.XQueryGUI;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * The sub-panel of the JEdit/XQuery plugin that's used to
@@ -44,21 +42,22 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 	private JTextField portField = new JTextField (XQueryGUI.getProperty (PORT_PROPERTY));
 	private JTextField usernameField = new JTextField (XQueryGUI.getProperty (USER_PROPERTY));
 	private JTextField passwordField = new JTextField (XQueryGUI.getProperty (PASS_PROPERTY));
-	private JCheckBox hostIsJndi;
+//	private JCheckBox hostIsJndi;
 
 	public void _init ()
 	{
 		addSeparator("Mark Logic Content Interaction Server Connection Options");
 
 		addLabel (" ");
-		addLabel ("Specify host name and port of server, or JNDI DataSource URI");
-
-		hostIsJndi = addBooleanComponent ("Host field is DataSource URI", "marklogic.datasource.isjndi", false);
-
-		hostIsJndi.addActionListener (new ActionListener() {
-			public void actionPerformed (ActionEvent e) {
-				portField.setEditable ( ! hostIsJndi.isSelected());
-			}});
+		addLabel ("Specify host name and port of server");
+//		addLabel ("Specify host name and port of server, or JNDI DataSource URI");
+//
+//		hostIsJndi = addBooleanComponent ("Host field is DataSource URI", "marklogic.datasource.isjndi", false);
+//
+//		hostIsJndi.addActionListener (new ActionListener() {
+//			public void actionPerformed (ActionEvent e) {
+//				portField.setEditable ( ! hostIsJndi.isSelected());
+//			}});
 
 		addComponent ("Host/DataSource", hostField, GridBagConstraints.HORIZONTAL);
 		addComponent ("Port", portField, GridBagConstraints.HORIZONTAL);

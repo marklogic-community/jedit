@@ -179,6 +179,8 @@ public class MarkLogicAdapter implements Adapter
 	private XDBCConnection getXdbcConnection()
 		throws AdapterException
 	{
+		// FIXME: Handle DataSource URI case.
+
 		if (dataSource == null) {
 			String host = XQueryGUI.getProperty (MarkLogicAdapterOptionsPanel.HOST_PROPERTY);
 			String portStr = XQueryGUI.getProperty (MarkLogicAdapterOptionsPanel.PORT_PROPERTY);

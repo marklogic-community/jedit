@@ -1,10 +1,36 @@
+
+<!--
+/*
+ * Copyright (c)2004 Mark Logic Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * The use of the Apache License does not indicate that this project is
+ * affiliated with the Apache Software Foundation.
+ */
+-->
+
 <project name="j2ee" default="all" basedir=".">
 
+	<property name="release.version" value="0.1"/>
+
 	<!-- Static definitions of where things are relative to the root -->
-	<property name="java.source" value="src/java"/>
-	<property name="junit.source" value="src/junit"/>
-	<property name="config.source" value="src/config"/>
-	<property name="webroot.source" value="src/webroot"/>
+	<property name="src.root" value="src"/>
+	<property name="java.source" value="${src.root}/java"/>
+	<property name="junit.source" value="${src.root}/junit"/>
+	<property name="config.source" value="${src.root}/config"/>
+	<property name="webroot.source" value="${src.root}/webroot"/>
+	<property name="doc.source" value="${src.root}/docs"/>
 	<property name="buildtmp" value="buildtmp"/>
 	<property name="compiled.classes.dir" value="${buildtmp}/classes"/>
 	<property name="generated.files" value="${buildtmp}/generated"/>
@@ -19,15 +45,19 @@
 	<property name="xdmp.jar" value="${jarlib}/xdmp.jar"/>
 	<property name="jdom.jar" value="${jarlib}/jdom.jar"/>
 
+	<!-- Intermediate generated files -->
+	<property name="javadoc.zipfile" value="${generated.files}/MLAdapterJavadocs.zip"/>
+	<property name="plugin.output.jar" value="${generated.files}/MarkLogicAdapter.jar"/>
+
 	<!-- Products of this build -->
 	<property name="products" value="deliverable"/>
-	<property name="javadoc.zipfile" value="${products}/mljeditjavadocs.zip"/>
-	<property name="plugin.output.jar" value="${products}/MarkLogicAdapter.jar"/>
+	<property name="release.bundle" value="${products}/MLJeditXQuery-${release.version}.zip"/>
+	<property name="source.bundle" value="${products}/MLJeditXQuery-src-${release.version}.zip"/>
 
 	<!-- Configurable flags that will affect how targets run -->
 	<property name="compile.debug.symbols.flag" value="on"/>	<!-- on | off -->
-	<property name="junit.halt.on.error" value="off"/>			<!-- on | off -->
-	<property name="junit.disabled" value="true"/>				<!-- true | false -->
+	<property name="junit.halt.on.error" value="off"/>		<!-- on | off -->
+	<property name="junit.disabled" value="true"/>			<!-- true | false -->
 
 	<!-- ********************************************************** -->
 
@@ -40,16 +70,14 @@
 	</target>
 
 	<target name="clean">
-			<delete dir="${buildtmp}"/>
+		<delete dir="${buildtmp}"/>
 	</target>
 
 	<target name="cleanest" depends="clean">
-			<delete dir="${products}"/>
+		<delete dir="${products}"/>
 	</target>
 
 	<!-- ********************************************************** -->
-
-<!--	<property name="taglib.classes" value="com/marklogic/jsptaglib/*"/>-->
 
 	<path id="plugin.compile.classpath">
 		<pathelement path="${xdbc.jar}"/>
@@ -113,14 +141,40 @@
 
 			<classpath refid="plugin.compile.classpath"/>
 			<doctitle><![CDATA[<h1>Mark Logic jEdit XQuery Plugin</h1>]]></doctitle>
-			<bottom><![CDATA[<i>Copyright &copy; 2004 Mark Logic Corporation, All Rights Reserved.</i>]]></bottom>
+			<bottom><![CDATA[<i>Copyright &copy; 2004 Mark Logic Corporation, Licensed Under Apache 2.0</i>]]></bottom>
 		</javadoc>
-		<zip zipfile="${javadoc.zipfile}" basedir="${javadoc.dir}"/>
 
+		<zip zipfile="${javadoc.zipfile}" basedir="${javadoc.dir}"/>
 	</target>
 
 	<!-- ********************************************************** -->
 
-	<target name="all" depends="init,plugin,javadoc"/>
+	<target name="binarybundle" depends="init,plugin,javadoc">
+		<zip zipfile="${release.bundle}">
+			<fileset dir="${doc.source}">
+				<include name="*"/>
+			</fileset>
+			<fileset file="${plugin.output.jar}" />
+			<fileset dir="${jarlib}">
+				<include name="xdbc.jar"/>
+				<include name="xdmp.jar"/>
+				<include name="jdom.jar"/>
+			</fileset>
+			<fileset file="${javadoc.zipfile}" />
+		</zip>
+	</target>
+
+	<target name="srcbundle">
+		<zip zipfile="${source.bundle}">
+			<fileset file="build.xml"/>
+			<fileset dir=".">
+				<include name="src/**"/>
+			</fileset>
+		</zip>
+	</target>
+
+	<!-- ********************************************************** -->
+
+	<target name="all" depends="binarybundle,srcbundle"/>
 
 </project>
