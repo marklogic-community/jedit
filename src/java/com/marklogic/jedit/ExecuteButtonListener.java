@@ -24,8 +24,7 @@ import com.marklogic.xqrunner.XQAsyncRunner;
 import com.marklogic.xqrunner.XQProgressListener;
 import com.marklogic.xqrunner.XQDataSource;
 import com.marklogic.xqrunner.XQException;
-import com.marklogic.xqrunner.generic.AsyncRunner;
-import com.marklogic.xqrunner.generic.SimpleQuery;
+import com.marklogic.xqrunner.XQResult;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,6 +43,7 @@ public class ExecuteButtonListener implements ActionListener
 	private ConnectionPanel connectionPanel;
 	private SourcePanel sourcePanel;
 	private DestPanel runPanel;
+	private XQAsyncRunner activeRunner = null;
 
 	public ExecuteButtonListener (SourcePanel inputPanel, DestPanel destPanel,
 		ConnectionPanel connectionPanel, XQProgressListener queryListener)
@@ -54,9 +54,12 @@ public class ExecuteButtonListener implements ActionListener
 		this.queryListener = queryListener;
 	}
 
-	// FIXME: properly handle state: cancel running query.  Depends on XQRunner cahnges not yet done.
 	public void actionPerformed (ActionEvent e)
 	{
+		if (attemptCancel()) {
+			return;
+		}
+
 		XQuery query;
 		XQDataSource ds;
 
@@ -64,7 +67,6 @@ public class ExecuteButtonListener implements ActionListener
 		runPanel.clearOutputBuffer();
 
 		try {
-			query = new SimpleQuery (sourcePanel.getQueryText());
 			ds = connectionPanel.getDataSource();
 		} catch (XQException e1) {
 			ErrorPopup.popError (sourcePanel.getPanel(), "Cannot Get DataSource", e1.toString());
@@ -73,15 +75,69 @@ public class ExecuteButtonListener implements ActionListener
 
 		if (ds != datasource) {
 			datasource = ds;
-			queryRunner = new AsyncRunner (datasource);
+			queryRunner = datasource.newAsyncRunner();
 
 			queryRunner.registerListener (queryListener, null);
+			queryRunner.registerListener (new QueryListener(), null);
 		}
 
 		try {
+			query = datasource.newQuery (sourcePanel.getQueryText());
 			queryRunner.startQuery (query);
 		} catch (Throwable e1) {
 			ErrorPopup.popError (sourcePanel.getPanel(), "Unexpected Exception", e1.toString());
+		}
+	}
+
+	private synchronized boolean attemptCancel ()
+	{
+		if (activeRunner == null) {
+			return (false);
+		}
+
+		try {
+			activeRunner.abortQuery();
+		} catch (XQException e) {
+			// nothing, ignore
+		}
+
+		clearActiveRunner();
+
+		return (true);
+	}
+
+	private synchronized void setActiveRunner (XQAsyncRunner runner)
+	{
+		activeRunner = runner;
+	}
+
+	private synchronized void clearActiveRunner()
+	{
+		activeRunner = null;
+	}
+
+	// --------------------------------------------------------
+
+	private class QueryListener implements XQProgressListener
+	{
+		public void queryStarted (XQAsyncRunner xqRunner, Object o)
+		{
+			setActiveRunner (xqRunner);
+		}
+
+		public void queryFinished (XQAsyncRunner xqRunner, XQResult xqResult, Object o)
+		{
+			clearActiveRunner();
+		}
+
+		public void queryAborted (XQAsyncRunner xqRunner, Object o)
+		{
+			clearActiveRunner();
+		}
+
+		public void queryFailed (XQAsyncRunner xqRunner, Throwable throwable, Object o)
+		{
+			clearActiveRunner();
 		}
 	}
 }

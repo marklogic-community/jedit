@@ -2,7 +2,7 @@
 plugin.com.marklogic.jedit.MarkLogicPlugin.activate=defer
 plugin.com.marklogic.jedit.MarkLogicPlugin.name=Mark Logic
 plugin.com.marklogic.jedit.MarkLogicPlugin.author=Ron Hitchens, Mark Logic Corporation
-plugin.com.marklogic.jedit.MarkLogicPlugin.version=0.7.0
+plugin.com.marklogic.jedit.MarkLogicPlugin.version=0.7.1
 plugin.com.marklogic.jedit.MarkLogicPlugin.docs=com/marklogic/jedit/help.html
 plugin.com.marklogic.jedit.MarkLogicPlugin.jars=xqrunner.jar xdbc.jar xdmp.jar forms_rt.jar
 plugin.com.marklogic.jedit.MarkLogicPlugin.depend.0=jdk 1.4

@@ -23,7 +23,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.marklogic.xqrunner.XQDataSource;
 import com.marklogic.xqrunner.XQException;
-import com.marklogic.xqrunner.xdbc.XdbcDataSource;
+import com.marklogic.xqrunner.XQFactory;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -90,6 +90,7 @@ public class ConfigPanel
 
 	// -------------------------------------------------------------
 
+	private XQFactory factory = null;
 	private XQDataSource datasource = null;
 
 	public XQDataSource getDataSource() throws XQException
@@ -98,14 +99,18 @@ public class ConfigPanel
 			return (datasource);
 		}
 
+		if (factory == null) {
+			factory = new XQFactory ("xdbc");
+		}
+
 		String user = userText.getText();
 		String pw = new String (passwordText.getPassword());
 
 		if (datasourceRadio.isSelected()) {
-			return (new XdbcDataSource (datasourceText.getText(), user, pw));
+			return (factory.newDataSource (datasourceText.getText(), user, pw));
 		}
 
-		return (new XdbcDataSource (hostnameText.getText(),
+		return (factory.newDataSource (hostnameText.getText(),
 			Integer.parseInt (portText.getText()), user, pw));
 	}
 

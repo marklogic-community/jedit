@@ -25,7 +25,7 @@ import com.marklogic.swing.ErrorPopup;
 import com.marklogic.xdbc.XDBCXQueryException;
 import com.marklogic.xqrunner.XQProgressListener;
 import com.marklogic.xqrunner.XQResult;
-import com.marklogic.xqrunner.XQRunner;
+import com.marklogic.xqrunner.XQAsyncRunner;
 import errorlist.DefaultErrorSource;
 import errorlist.ErrorSource;
 
@@ -336,12 +336,12 @@ public class RunPanel
 	// ----------------------------------------------------------------------
 	// Implementation of XQProgressListener interface
 
-	public void queryStarted (XQRunner context, Object attachment)
+	public void queryStarted (XQAsyncRunner context, Object attachment)
 	{
 		goButton.setText (MarkLogicPlugin.getProperty (BUTTON_STOP_PROP, "Cancel Query"));
 	}
 
-	public void queryFinished (XQRunner context, XQResult result, Object attachment)
+	public void queryFinished (XQAsyncRunner context, XQResult result, Object attachment)
 	{
 		try {
 			setQueryResult (result.asString ("\n"));
@@ -353,14 +353,14 @@ public class RunPanel
 		resetRunButton();
 	}
 
-	public void queryAborted (XQRunner context, Object attachment)
+	public void queryAborted (XQAsyncRunner context, Object attachment)
 	{
 		ErrorPopup.popError (getPanel(), "Query Aborted", "Closed connection");
 
 		resetRunButton();
 	}
 
-	public void queryFailed (XQRunner context, Throwable t, Object attachment)
+	public void queryFailed (XQAsyncRunner context, Throwable t, Object attachment)
 	{
 		Throwable throwable = t;
 
