@@ -67,6 +67,11 @@ public class MarkLogicAdapterOptionsPanel extends AdapterOptionsPanel
 		addLabel ("User name and password may be left blank if not required");
 		addComponent ("User", usernameField, GridBagConstraints.HORIZONTAL);
 		addComponent ("Password", passwordField, GridBagConstraints.HORIZONTAL);
+
+		addLabel (" ");
+		addLabel (" ");
+		addLabel ("Visit http://xqzone.marklogic.com for");
+		addLabel ("updates and other XQuery tools.");
 	}
 
 	public void _save ()

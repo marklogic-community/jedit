@@ -67,6 +67,10 @@ with the XQuery plugin:
 * Follow the installation instructions to install
   jEdit on your platform.
 
+  If you already have jEdit (version >= 4.2pre14)
+  installed, you can skip ahead to the Install
+  The Mark Logic Adapter step.
+
 * Run jEdit.  Select Plugins -> Plugin Manager
 
   On the popup window, select the Install tab.
@@ -87,7 +91,9 @@ with the XQuery plugin:
 
   When downloading is complete, exit jEdit.
 
-* Unpack the the contents of MLJeditXQuery.zip from
+* Install The Mark Logic Adapter
+
+  Unpack the the contents of MLJeditXQuery.zip from
   this distribution and move the jar files to
   your user-specific jEdit jars directory.  There
   are four jar files in there: MakrLogicAdapter.jar,

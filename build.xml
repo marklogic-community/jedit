@@ -160,7 +160,6 @@
 				<include name="xdmp.jar"/>
 				<include name="jdom.jar"/>
 			</fileset>
-			<fileset file="${javadoc.zipfile}" />
 		</zip>
 	</target>
 
@@ -175,6 +174,8 @@
 
 	<!-- ********************************************************** -->
 
-	<target name="all" depends="binarybundle,srcbundle"/>
+	<target name="all" depends="binarybundle,srcbundle">
+		<copy file="${doc.source}/README.txt"  todir="${products}"/> 
+	</target>
 
 </project>
