@@ -14,5 +14,9 @@
   <!-- there can be 0 to many notify tags. Each tag contains an
   email address to be notified on changes to the repository -->
   <notify>duncan@x180.net</notify>
+  <notify>james@x180.net</notify>
+  <notify>speakeasy@x180.net</notify>
+  <notify>ron.hitchens@marklogic.com</notify>
+  <notify>jason.hunter@marklogic.com</notify>
 
 </project>
