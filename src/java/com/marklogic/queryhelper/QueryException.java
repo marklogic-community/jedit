@@ -31,11 +31,11 @@ public class QueryException extends RuntimeException
 
 	public QueryException (String message, Throwable cause)
 	{
-		super (message, cause);    // FIXME: auto-generated
+		super (message, cause);
 	}
 
 	public QueryException (Throwable cause)
 	{
-		super (cause);    // FIXME: auto-generated
+		super (cause);
 	}
 }
