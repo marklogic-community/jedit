@@ -22,9 +22,14 @@ package marklogicadapter;
 import xquery.AdapterOptionsPanel;
 import xquery.XQueryGUI;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 /**
  * The sub-panel of the JEdit/XQuery plugin that's used to
