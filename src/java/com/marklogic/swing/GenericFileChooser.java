@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Not used in this project.
+ *
  * @author Ron Hitchens
  */
 public class GenericFileChooser

@@ -33,6 +33,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+// TODO: Convert this to use XQRunner, update the Belgians, then deprecate this
 /**
  * Adapter for the Jedit/XQuery plugin to send query requests
  * to a Mark Logic Content Interation Server engine.

@@ -54,6 +54,7 @@ public class ExecuteButtonListener implements ActionListener
 		this.queryListener = queryListener;
 	}
 
+	// FIXME: properly handle state: cancel running query.  Depends on XQRunner cahnges not yet done.
 	public void actionPerformed (ActionEvent e)
 	{
 		XQuery query;

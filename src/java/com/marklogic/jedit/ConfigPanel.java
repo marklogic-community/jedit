@@ -25,6 +25,7 @@ import com.marklogic.xqrunner.XQDataSource;
 import com.marklogic.xqrunner.XQException;
 import com.marklogic.xqrunner.xdbc.XdbcDataSource;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,10 +34,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.BorderFactory;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Ron Hitchens
@@ -107,9 +109,33 @@ public class ConfigPanel
 			Integer.parseInt (portText.getText()), user, pw));
 	}
 
+	// -------------------------------------------------------------
+
+	private Map lastValues = new HashMap();
+
 	private boolean datasourcePropertiesUnchanged()
 	{
-		return false;  // FIXME: auto-generated
+		boolean changed = false;
+
+		changed |= valueChanged (lastValues, "hostname", hostnameText.getText());
+		changed |= valueChanged (lastValues, "port", portText.getText());
+		changed |= valueChanged (lastValues, "jndiname", datasourceText.getText());
+		changed |= valueChanged (lastValues, "username", userText.getText());
+		changed |= valueChanged (lastValues, "password", new String (passwordText.getPassword()));
+
+		return ( ! changed);
+	}
+
+	static boolean valueChanged (Map map, String name, String newValue)
+	{
+		String oldValue = (String) map.get (name);
+
+		if ((oldValue == null) || ( ! oldValue.equals (newValue))) {
+			map.put (name, newValue);
+			return (true);
+		}
+
+		return (false);
 	}
 
 	// -------------------------------------------------------------

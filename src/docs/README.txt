@@ -22,6 +22,9 @@ license, visit http://www.apache.org/licenses/LICENSE-2.0
 Where did this come from?
 -------------------------
 
+The Mark Logic jEdit plugin was written by
+Ron Hitchens or Mark Logic Corporation.
+
 This project is hosted on the Mark Logic Developer
 Community site http://xqzone.marklogic.com.  If you
 did not get this code from there, please visit the
@@ -35,12 +38,12 @@ How do I install this?
 ----------------------
 
 The first thing you need is a recent version of jEdit.
-This plugin depeds on features in the 4.2 version of
+This plugin depends on features in the 4.2 version of
 jEdit.  As of this writing, version 4.2final has been
 released.
 
 This plugin also depends on a few other standard plugins
-which must first be installed.
+which must also be installed.
 
 Follow these steps to install and setup jEdit
 with the XQuery plugin:
@@ -72,6 +75,16 @@ with the XQuery plugin:
 
   Select any other plugins you'd also like to install.
 
+  Optional: Click the Download Options... button
+  and select an alternate server from the mirrors
+  list.  Depending on your location, one of the
+  mirrors may work better for you.  You also have 
+  the option here to choose whether plugins will
+  be installed in the jEdit Application directory
+  or in the per-user directory.  Choose the application
+  directory or else use the per-user directory when
+  installing the Mark Logic plugin below.  Be consistent.
+
 * Click the Install button and wait for jEdit to
   download and install the plugin jar files.
 
@@ -98,7 +111,7 @@ with the XQuery plugin:
   c:\Program Files\jEdit\jars, or wherever you selected
   during the install.  On linux/unix/Mac it will be the
   "jars" subdirectory at the location you selected
-  during the install.
+  for the install.
 
   Note: Plugin jars may also go in a user-specific
   jars directory (c:\Program File\.jEdit\jars on
@@ -121,7 +134,7 @@ with the XQuery plugin:
 * Setup XQuery Syntax Highlighting
 
   If you want XQuery syntax highlighting enabled, install
-  the XQuery file mode descriptor.
+  the XQuery File Mode descriptor.
 
   Included in the MarkLogic-x.x.x.zip distribution
   jar file is a file named xq.xml.  Copy this file
@@ -195,6 +208,8 @@ to do, but haven't been able get done yet:
 
 * Add Document Load/Fetch/Browse panel to aid in
   managing documents in CIS
+
+* Display and manipulate documents meta data
 
 * Deal with CLOBs and BLOBs.
 

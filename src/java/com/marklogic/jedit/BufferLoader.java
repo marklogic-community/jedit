@@ -29,6 +29,8 @@ import org.gjt.sp.jedit.Buffer;
  * this class is created and handed to the Swing invokeLater()
  * method which will run it in the AWT thread as soon as
  * possible.
+ *
+ * @author Ron Hitchens
  */
 class BufferLoader implements Runnable
 {

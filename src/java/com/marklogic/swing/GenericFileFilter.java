@@ -25,6 +25,8 @@ import java.util.HashSet;
 import java.io.File;
 
 /**
+ * Not used in this project.
+ *
  * @author Ron Hitchens
  */
 public class GenericFileFilter extends FileFilter
