@@ -20,7 +20,7 @@
  */
 -->
 
-<project name="j2ee" default="all" basedir=".">
+<project name="jeditplugin" default="all" basedir=".">
 
 	<property name="release.version" value="0.2"/>
 
