@@ -1,0 +1,126 @@
+<project name="j2ee" default="all" basedir=".">
+
+	<!-- Static definitions of where things are relative to the root -->
+	<property name="java.source" value="src/java"/>
+	<property name="junit.source" value="src/junit"/>
+	<property name="config.source" value="src/config"/>
+	<property name="webroot.source" value="src/webroot"/>
+	<property name="buildtmp" value="buildtmp"/>
+	<property name="compiled.classes.dir" value="${buildtmp}/classes"/>
+	<property name="generated.files" value="${buildtmp}/generated"/>
+	<property name="javadoc.dir" value="${buildtmp}/javadocs"/>
+
+	<!-- Jar files that are under source control in this tree -->
+	<property name="jarlib" value="src/lib"/>
+	<property name="junit.jar" value="${jarlib}/junit.jar"/>
+	<property name="jedit.jar" value="${jarlib}/jedit.jar"/>
+	<property name="xqueryplugin.jar" value="${jarlib}/XQuery.jar"/>
+	<property name="xdbc.jar" value="${jarlib}/xdbc.jar"/>
+	<property name="xdmp.jar" value="${jarlib}/xdmp.jar"/>
+	<property name="jdom.jar" value="${jarlib}/jdom.jar"/>
+
+	<!-- Products of this build -->
+	<property name="products" value="deliverable"/>
+	<property name="javadoc.zipfile" value="${products}/mljspjavadocs.zip"/>
+	<property name="plugin.output.jar" value="${products}/MarkLogicAdapter.jar"/>
+
+	<!-- Configurable flags that will affect how targets run -->
+	<property name="compile.debug.symbols.flag" value="on"/>	<!-- on | off -->
+	<property name="junit.halt.on.error" value="off"/>			<!-- on | off -->
+	<property name="junit.disabled" value="true"/>				<!-- true | false -->
+
+	<!-- ********************************************************** -->
+
+
+	<target name="init">
+		<mkdir dir="${buildtmp}"/>
+		<mkdir dir="${compiled.classes.dir}"/>
+		<mkdir dir="${generated.files}"/>
+		<mkdir dir="${products}"/>
+	</target>
+
+	<target name="clean">
+			<delete dir="${buildtmp}"/>
+	</target>
+
+	<target name="cleanest" depends="clean">
+			<delete dir="${products}"/>
+	</target>
+
+	<!-- ********************************************************** -->
+
+<!--	<property name="taglib.classes" value="com/marklogic/jsptaglib/*"/>-->
+
+	<path id="plugin.compile.classpath">
+		<pathelement path="${xdbc.jar}"/>
+		<pathelement path="${xdmp.jar}"/>
+		<pathelement path="${jdom.jar}"/>
+		<pathelement path="${xqueryplugin.jar}"/>
+		<pathelement path="${jedit.jar}"/>
+		<pathelement path="${compiled.classes.dir}"/>
+	</path>
+
+	<path id="plugin.testcases.classpath">
+		<pathelement path="${junit.jar}"/>
+		<pathelement path="${compiled.classes.dir}"/>
+	</path>
+
+	<path id="xdoclet.classpath">
+		<pathelement path="${compiled.classes.dir}"/>
+	</path>
+
+	<target name="compile.plugin" depends="init">
+		<javac classpathref="plugin.compile.classpath" srcdir="${java.source}"
+			destdir="${compiled.classes.dir}" deprecation="on"
+			debug="${compile.debug.symbols.flag}" />
+	</target>
+
+	<target name="compile.plugin.tests" depends="compile.plugin">
+		<javac classpathref="plugin.testcases.classpath" srcdir="${junit.source}"
+			destdir="${compiled.classes.dir}" deprecation="on"
+			debug="${compile.debug.symbols.flag}" />
+	</target>
+
+	<target name="test.plugin" depends="compile.plugin.tests"
+		unless="junit.disabled" >
+
+		<junit printsummary="on" haltonerror="${junit.halt.on.error}" showoutput="true">
+			<classpath refid="plugin.testcases.classpath"/>
+				<formatter type="plain" usefile="false"/>
+
+				<batchtest fork="no">
+						<fileset dir="${junit.source}" includes="**/Test*.java"/>
+				</batchtest>
+		</junit>
+	</target>
+
+	<target name="generate.plugin.jar" depends="test.plugin">
+		<jar jarfile="${plugin.output.jar}">
+			<fileset dir="${compiled.classes.dir}">
+				<exclude name="**/Test*.class"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="plugin" depends="generate.plugin.jar"/>
+
+	<!-- ********************************************************** -->
+
+	<target name="javadoc" depends="plugin">
+		<mkdir dir="${javadoc.dir}"/>
+		<javadoc sourcepath="${java.source}" destdir="${javadoc.dir}" packagenames="*"
+			author="true" version="true" windowtitle="Mark Logic JSP TagLib">
+
+			<classpath refid="plugin.compile.classpath"/>
+			<doctitle><![CDATA[<h1>Mark Logic jEdit XQuery Plugin</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &copy; 2004 Mark Logic Corporation, All Rights Reserved.</i>]]></bottom>
+		</javadoc>
+		<zip zipfile="${javadoc.zipfile}" basedir="${javadoc.dir}"/>
+
+	</target>
+
+	<!-- ********************************************************** -->
+
+	<target name="all" depends="init,plugin,javadoc"/>
+
+</project>
