@@ -1,0 +1,24 @@
+<project>
+  <name>jEdit Mark Logic Adapter</name>
+  <abstract>A plug in for jEdit to integrate with Mark Logic CIS</abstract>
+  <description>
+    <p>
+    The jEdit project is a simple little thing that blah blah
+    blah. This content is from the description tag and can contain any
+    amount of HTML markup. Such as the following list:
+    </p>
+    <ul>
+        <li>Easy to use</li>
+	<li>Easy to install</li>
+    </ul>
+    <p>
+    This description will be slurped up into the project page lists
+    </p>
+  </description>
+
+  <distribution>
+    Instructions about how to snag distributions to be placed here.
+  </distribution>
+
+
+</project>
