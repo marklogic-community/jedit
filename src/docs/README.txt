@@ -209,12 +209,12 @@ to do, but haven't been able get done yet:
 * Add Document Load/Fetch/Browse panel to aid in
   managing documents in CIS
 
-* Display and manipulate documents meta data
+* Display and manipulate document meta data
 
 * Deal with CLOBs and BLOBs.
 
 * In-process HTML rendering of query output
-  (This may be limited in usefullness because
+  (This may be limited in usefulness because
   the Java JEditorPane widget doesn't cope very
   well with complex HTML.  For now, use the
   Auto Save option for query output and point
@@ -226,6 +226,12 @@ If you have additional ideas, post them to the
 xq:zone mailing list and/or implement the new
 features yourself and sent me the code.
 
+Update (6/22/2005)
+	Updated bundled xdbc jars to 2.2-8
+	This xdbc version will talk to 3.0 servers
+	Bundle 0.7.1 version of XQRunner
+	Rev version to 0.7.1
+
 ---
-Rh 9/21/2003
+Rh 6/22/2005
 Mark Logic Corporation

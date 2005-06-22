@@ -22,7 +22,7 @@
 
 <project name="jeditplugin" default="all" basedir=".">
 
-	<property name="release.version" value="0.7.0"/>
+	<property name="release.version" value="0.7.1"/>
 
 	<!-- Static definitions of where things are relative to the root -->
 	<property name="src.root" value="src"/>
